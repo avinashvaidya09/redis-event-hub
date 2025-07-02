@@ -5,7 +5,7 @@ _schema-version: '3.1.0'
 modules:
   - name: redis-event-gateway
     type: nodejs
-    path: app
+    path: modules/redis-event-gateway
     properties:
       buildpack: nodejs_buildpack
       start-command: npm start
@@ -14,6 +14,16 @@ modules:
     requires:
       - name: redis-hyperscaler-service
       - name: user-provided-variables-service
+  - name: redis-bullboard-monitor
+    type: nodejs
+    path: modules/redis-bullboard-monitor
+    properties:
+      buildpack: nodejs_buildpack
+      start-command: npm start
+      memory: 256M
+      disk-quota: 512M
+    requires:
+      - name: redis-hyperscaler-service
 
 resources:
   - name: redis-hyperscaler-service
