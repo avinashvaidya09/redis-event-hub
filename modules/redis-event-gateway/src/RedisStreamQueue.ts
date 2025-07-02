@@ -1,5 +1,5 @@
 import { Queue } from "bullmq";
-import { getRedisConnectionConfiguration} from "./RedisConfig";
+import { getRedisConnectionConfiguration } from "../../config/RedisConfig"; // Adjust the import path as necessary
 
 class RedisStreamQueue {    
 

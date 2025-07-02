@@ -15,10 +15,9 @@
     "typescript": "^5.8.3"
   },
   "scripts": {
-    "start": "node dist/server.js"
+    "start": "node dist/redis-event-gateway/src/server.js"
   },
-  "keywords": [],
-  "author": "",
+  "author": "Avinash Vaidya",
   "license": "ISC",
   "description": ""
 }

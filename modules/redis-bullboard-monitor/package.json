@@ -3,7 +3,7 @@
     "version": "1.0.0",
     "main": "index.js",
     "scripts": {
-        "start": "node dist/BullBoard.js"
+        "start": "node dist/redis-bullboard-monitor/src/BullBoard.js"
     },
     "keywords": [],
     "author": "",

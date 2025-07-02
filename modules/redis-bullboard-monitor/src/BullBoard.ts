@@ -3,8 +3,8 @@ import { BullMQAdapter } from "@bull-board/api/bullMQAdapter";
 import { ExpressAdapter } from "@bull-board/express";
 import { Queue } from "bullmq";
 import express from "express";
-import { QueueNames } from "./Constants";
-import { getRedisConnectionConfiguration } from "./RedisConfig";
+import { QueueNames } from "../../config/Constants"; // Adjust the import path as necessary
+import { getRedisConnectionConfiguration } from "../../config/RedisConfig"; // Adjust the import path as necessary
 import dotenv from "dotenv";
 
 class BullBoard {

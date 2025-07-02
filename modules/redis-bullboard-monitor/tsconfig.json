@@ -15,7 +15,7 @@
     /* Completeness */
     // "skipDefaultLibCheck": true,                      /* Skip type checking .d.ts files that are included with TypeScript. */
     "skipLibCheck": true,                                 /* Skip type checking all .d.ts files. */
-    "rootDir": "./src",                                /* Specify the root directory of input files. Use to control the output directory structure with --outDir. */  
+    "rootDir": "../../modules",                                /* Specify the root directory of input files. Use to control the output directory structure with --outDir. */  
     "outDir": "./dist",                                  /* Specify an output folder for all emitted files. */
     "sourceMap": true 
   },

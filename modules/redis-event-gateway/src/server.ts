@@ -1,7 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import EventQueueService from "./EventQueueService";
-import { JobNames } from "./Constants";
+import { JobNames } from "../../config/Constants";
 import RedisStreamWorker from "./RedisStreamWorker";
 
 dotenv.config();
