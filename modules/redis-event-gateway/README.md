@@ -26,13 +26,14 @@ This service is ideal for scenarios where asynchronous processing of tasks is re
    ```
    npm install
    ```
+2. Run `npx tsc --watch` in one terminal to convert .ts files to .js
 
-2. Start server
+3. Open another terminal and Start server
     ```
     npm start
     ```
 
-3. Test the API using the provided [requests.http](requests.http) file or any HTTP client like Postman.
+4. Test the API using the provided [requests.http](requests.http) file or any HTTP client like Postman.
 
 ### Deployment to BTP
 1. Ensure Redis service is entitled to your subaccount
