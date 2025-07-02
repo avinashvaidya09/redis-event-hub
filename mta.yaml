@@ -1,0 +1,29 @@
+ID: redis-event-hub
+version: 0.0.1
+_schema-version: '3.1.0'
+
+modules:
+  - name: redis-event-gateway
+    type: nodejs
+    path: app
+    properties:
+      buildpack: nodejs_buildpack
+      start-command: npm start
+      memory: 512M
+      disk-quota: 1G
+    requires:
+      - name: redis-hyperscaler-service
+      - name: user-provided-variables-service
+
+resources:
+  - name: redis-hyperscaler-service
+    type: org.cloudfoundry.managed-service
+    optional: false
+    active: true
+    parameters:
+      service: redis-cache
+      service-plan: development
+  - name: user-provided-variables-service
+    type: org.cloudfoundry.existing-service
+    parameters:
+      service-name: user-provided-variables-service

@@ -1,0 +1,8 @@
+node_modules/
+.DS_Store
+*.png
+.env
+.vscode
+dist/
+vcap.json
+default-env.json

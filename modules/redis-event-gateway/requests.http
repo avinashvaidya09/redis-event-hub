@@ -1,0 +1,7 @@
+### POST request to /video
+POST http://localhost:8080/video
+Content-Type: application/json
+
+{
+  "videoId": "12345"
+}
