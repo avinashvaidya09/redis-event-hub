@@ -1,4 +1,4 @@
-import { JobNames, QueueNames } from "../../config/Constants"; // Adjust the import path as necessary
+import { JobNames, QueueNames } from "../../redis-config/Constants"; // Adjust the import path as necessary
 import RedisStreamQueue from "./RedisStreamQueue";
 
 class EventQueueService {

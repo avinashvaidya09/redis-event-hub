@@ -1,7 +1,7 @@
 import { Queue } from "bullmq";
-import { getRedisConnectionConfiguration } from "../../config/RedisConfig"; // Adjust the import path as necessary
+import { getRedisConnectionConfiguration } from "../../redis-config/RedisConnectionConfig"; // Adjust the import path as necessary
 import { Worker, Job } from "bullmq";
-import { QueueNames } from "../../config/Constants"; // Adjust the import path as necessary
+import { QueueNames } from "../../redis-config/Constants"; // Adjust the import path as necessary
 import EventQueueProcessor from "./EventQueueProcessor"; 
 
 class RedisStreamWorker {
