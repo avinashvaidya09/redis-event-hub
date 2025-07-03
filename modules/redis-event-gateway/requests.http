@@ -3,7 +3,7 @@ POST http://localhost:8080/video
 Content-Type: application/json
 
 {
-  "videoId": "12345",
+  "videoId": "12345-11",
   "title": "Sample Video",
   "description": "This is a sample video for testing purposes.",
   "s3Location": "s3://my-bucket/videos/12345.mp4",

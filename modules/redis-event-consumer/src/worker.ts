@@ -1,9 +1,20 @@
+import { QueueNames } from "../../redis-config/Constants";
 import RedisStreamWorker from "./RedisStreamWorker";
 import dotenv from "dotenv";
 
 // Load environment variables from .env file
 dotenv.config();
 
-const worker = RedisStreamWorker.getInstance();
+const workerCount = Number(process.env.WORKER_COUNT) || 2; // Default to 2 if not set
 
-console.info("RedisStreamWorker has started and is ready to process jobs.");
+
+for (let i = 1; i <= workerCount; i++) {
+    new RedisStreamWorker(
+        `RedisStreamWorker-${i}`,
+        QueueNames.VideoTranscodingQueue
+    );
+
+    console.info(`RedisStreamWorker-${i} has started and is ready to process jobs.`);
+}
+
+

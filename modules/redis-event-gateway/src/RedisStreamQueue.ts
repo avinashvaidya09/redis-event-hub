@@ -37,7 +37,7 @@ class RedisStreamQueue {
     public async sendEvent(jobName: string, data: Record<string, any>, options: object = {}): Promise<void> {
         try {
             await this.queue.add(jobName, data, options);
-            console.info(`Message added to ${this.queue.name} queue, ${JSON.stringify(data)}`);
+            console.info(`Message added to ${this.queue.name} queue, ${JSON.stringify(data, null, 2)}`);
         } catch (error) {
             console.error(`Error adding message to ${this.queue.name} queue, ${JSON.stringify(error)}`);
             throw error;

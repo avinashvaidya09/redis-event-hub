@@ -11,21 +11,22 @@ class EventQueueProcessor {
 
 
     /**
-     * Processes an evaluation event based on the provided identifier.
-     * @param identifier - The unique identifier for the evaluation event.
-     * @returns A promise that resolves to a boolean indicating success or failure.
+     * Processes the event for video transcoding.
+     * This method simulates the processing of a video transcoding event.
+     * @param data - The data associated with the video transcoding event.
+     * @returns A promise that resolves to true when processing is complete.
      */
-    public async processEvaluationEvent(identifier: string): Promise<boolean> {
+    public async processEvaluationEvent(data: Record<string, any>): Promise<boolean> {
         return new Promise((resolve, reject) => {
             try {
-                console.log(`Processing evaluation event for identifier: ${identifier}`);
+                console.log(`Processing video transcoding for videoId: ${data.videoId}`);
                 // Simulate processing logic
                 setTimeout(() => {
-                    console.log(`Video transcoding completed for video: ${identifier}`);
+                    console.log(`Video transcoding completed for videoId: ${data.videoId}`);
                     resolve(true);
                 }, 5000); // Simulate async processing with a timeout
             } catch (error) {
-                console.error(`Error processing evaluation event for identifier: ${identifier}`, error);
+                console.error(`Error processing video event for vidoeId: ${data.vidoeId}`, error);
                 reject(error);
             }
         });

@@ -6,11 +6,10 @@ import EventQueueProcessor from "./EventQueueProcessor";
 
 class RedisStreamWorker {
 
-    private static instance: RedisStreamWorker | null = null; // Singleton instance
     protected worker: Worker;
     protected eventQueueProcessor: EventQueueProcessor; 
 
-    private constructor(queueName: string) {
+    public constructor(consumerName: string, queueName: string) {
 
         this.eventQueueProcessor = EventQueueProcessor.getInstance(); 
         const connectionConfig = getRedisConnectionConfiguration();
@@ -19,10 +18,13 @@ class RedisStreamWorker {
         }
         this.worker = new Worker(
             queueName,
-            this.processEvent.bind(this),
+            async (job: Job) => {
+                await this.processEvent(job, consumerName)
+            },
             {
                 connection: connectionConfig,
                 lockDuration: 50000, // Lock duration in milliseconds
+                concurrency: 2, // Each worker can process up to 5 jobs concurrently
             }
         );
 
@@ -36,23 +38,11 @@ class RedisStreamWorker {
             }
         });
 
-        console.info(`Worker initialized for queue: ${queueName}`, {
+        console.info(`${consumerName} initialized for queue: ${queueName}`, {
             host: process.env.REDIS_HOST || "localhost",
             port: Number(process.env.REDIS_PORT) || 6379,
         });
        
-    }
-
-    /**
-     * Returns the singleton instance of EvaluationResultWorker.
-     * If the instance does not exist, it creates a new one.
-     * @returns The singleton instance of EvaluationResultWorker.
-     */
-    public static getInstance(): RedisStreamWorker {
-        if (!RedisStreamWorker.instance) {
-            RedisStreamWorker.instance = new RedisStreamWorker(QueueNames.VideoTranscodingQueue);
-        }
-        return RedisStreamWorker.instance;
     }
 
 
@@ -80,9 +70,9 @@ class RedisStreamWorker {
      * Processes a job from the queue.
      * @param job - The job to be processed.
      */
-    protected async processEvent(job: Job): Promise<void> {
-        console.info(`Processing job ${job.id} with data: ${JSON.stringify(job.data)}`);
-        await this.eventQueueProcessor.processEvaluationEvent(job.data.videoId);
+    protected async processEvent(job: Job, consumerName: string): Promise<void> {
+        console.info(`${consumerName} processing job ${job.id} with data: ${JSON.stringify(job.data, null, 2)}`);
+        await this.eventQueueProcessor.processEvaluationEvent(job.data);
     }
     
 }   
