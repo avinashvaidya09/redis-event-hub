@@ -17,13 +17,11 @@ const eventQueueService = EventQueueService.getInstance();
 // POST endpoint to handle videoId
 app.post("/video", (req: any, res: any) => {
 
-  const { videoId } = req.body;
-
-  if (!videoId) {
-    return res.status(400).json({ error: "videoId is required" });
-  }
-
   const input = req.body;
+
+  if (!input) {
+    return res.status(400).json({ error: "Payload is required" });
+  }
 
   try {
     const success = eventQueueService.sendEventToQueue(JobNames.VideoTranscodingJob, input);
@@ -33,7 +31,7 @@ app.post("/video", (req: any, res: any) => {
         .status(400)
         .json({ error: "Failed to send videoId to the queue" });
     }
-    res.status(200).json({ message: `Received videoId: ${videoId}` });
+    res.status(200).json({ message: `Received videoId: ${input.videoId}` });
   } catch (error) {
     if (error instanceof Error) {
       console.error(`Error sending videoId to the queue: ${error.message}`);
