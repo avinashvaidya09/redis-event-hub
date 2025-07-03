@@ -23,8 +23,10 @@ app.post("/video", (req: any, res: any) => {
     return res.status(400).json({ error: "videoId is required" });
   }
 
+  const input = req.body;
+
   try {
-    const success = eventQueueService.sendEventToQueue(JobNames.VideoTranscodingJob ,videoId);
+    const success = eventQueueService.sendEventToQueue(JobNames.VideoTranscodingJob, input);
 
     if (!success) {
       return res

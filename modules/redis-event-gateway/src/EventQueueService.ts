@@ -6,15 +6,16 @@ class EventQueueService {
     // Singleton instance
     private static instance: EventQueueService | null = null;
     private queue: RedisStreamQueue;
+    private defaultOptions = { attempts: 3 };
 
     constructor() {
         this.queue = RedisStreamQueue.getInstance(QueueNames.VideoTranscodingQueue);
     }
 
     // Simulate sending an event to a queue
-    public sendEventToQueue(jobName: string, videoId: string): boolean {
-        console.log(`Sending videoId: ${videoId} to the queue...`);
-        this.queue.sendEvent(jobName, { videoId });
+    public sendEventToQueue(jobName: string, data: Record<string, any>): boolean {
+        console.log(`Sending videoId: ${data.videoId} to the queue...`);
+        this.queue.sendEvent(jobName, data, this.defaultOptions);
         return true;
     }
 
