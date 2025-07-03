@@ -2,7 +2,6 @@ import express from "express";
 import dotenv from "dotenv";
 import EventQueueService from "./EventQueueService";
 import { JobNames } from "../../redis-config/Constants";
-import RedisStreamWorker from "./RedisStreamWorker";
 
 dotenv.config();
 const app = express();
@@ -14,7 +13,6 @@ app.use(express.json());
 // Get EventQueueService instance
 const eventQueueService = EventQueueService.getInstance();
 // Initiate RedisStreamWorker instance to start processing jobs
-RedisStreamWorker.getInstance();
 
 // POST endpoint to handle videoId
 app.post("/video", (req: any, res: any) => {

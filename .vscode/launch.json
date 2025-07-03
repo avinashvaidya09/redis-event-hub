@@ -4,7 +4,7 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "Launch BullBoard",
+            "name": "BullBoard",
             "skipFiles": [
                 "<node_internals>/**"
             ],
@@ -17,11 +17,24 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "Launch Redis Gateway",
+            "name": "Redis Gateway",
             "skipFiles": [
                 "<node_internals>/**"
             ],
             "program": "${workspaceFolder}/modules/redis-event-gateway/dist/redis-event-gateway/src/server.js",
+            "env": {
+                "NODE_ENV": "development"
+            },
+            "console": "integratedTerminal"
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Redis Event Consumer",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "program": "${workspaceFolder}/modules/redis-event-consumer/dist/redis-event-consumer/src/worker.js",
             "env": {
                 "NODE_ENV": "development"
             },
