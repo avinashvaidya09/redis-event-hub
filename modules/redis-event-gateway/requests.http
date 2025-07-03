@@ -14,3 +14,21 @@ Content-Type: application/json
   "uploadedBy": "user123",
   "uploadDate": "2025-07-03T10:00:00Z"
 }
+
+
+###
+POST https://gaif-evaluation-dev-agent-eval-redis-event-gateway.cfapps.eu12.hana.ondemand.com/video
+Content-Type: application/json
+
+{
+  "videoId": "12345-11",
+  "title": "Sample Video",
+  "description": "This is a sample video for testing purposes.",
+  "s3Location": "s3://my-bucket/videos/12345.mp4",
+  "transcodingTypes": ["1080p", "720p", "480p"],
+  "format": "mp4",
+  "resolution": "1080p",
+  "duration": 120,
+  "uploadedBy": "user123",
+  "uploadDate": "2025-07-03T10:00:00Z"
+}

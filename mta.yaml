@@ -13,7 +13,6 @@ modules:
       disk-quota: 1G
     requires:
       - name: redis-hyperscaler-service
-      - name: user-provided-variables-service
   - name: redis-bullboard-monitor
     type: nodejs
     path: modules/redis-bullboard-monitor
@@ -22,6 +21,16 @@ modules:
       start-command: npm start
       memory: 256M
       disk-quota: 512M
+    requires:
+      - name: redis-hyperscaler-service
+  - name: redis-event-consumer
+    type: nodejs    
+    path: modules/redis-event-consumer
+    properties:
+      buildpack: nodejs_buildpack
+      start-command: npm start
+      memory: 512M
+      disk-quota: 1G
     requires:
       - name: redis-hyperscaler-service
 
@@ -33,7 +42,3 @@ resources:
     parameters:
       service: redis-cache
       service-plan: development
-  - name: user-provided-variables-service
-    type: org.cloudfoundry.existing-service
-    parameters:
-      service-name: user-provided-variables-service

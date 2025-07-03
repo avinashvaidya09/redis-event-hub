@@ -4,10 +4,9 @@ import { getRedisConnectionConfiguration } from "../../redis-config/RedisConnect
 class RedisStreamQueue {    
 
     private static instance: RedisStreamQueue | null = null; // Singleton instance
-    protected queue: Queue; 
+    protected queue: Queue | null = null; // The queue instance
 
     private constructor(queueName: string) {
-        this.queue = new Queue(queueName);
         this._initializeQueue(queueName);
     }
 
@@ -36,10 +35,13 @@ class RedisStreamQueue {
      */
     public async sendEvent(jobName: string, data: Record<string, any>, options: object = {}): Promise<void> {
         try {
+            if (!this.queue) {
+                throw new Error("Queue is not initialized");
+            }
             await this.queue.add(jobName, data, options);
             console.info(`Message added to ${this.queue.name} queue, ${JSON.stringify(data, null, 2)}`);
         } catch (error) {
-            console.error(`Error adding message to ${this.queue.name} queue, ${JSON.stringify(error)}`);
+            console.error(`Error adding message to ${this.queue?.name || 'unknown'} queue, ${JSON.stringify(error)}`);
             throw error;
         }
     }
@@ -50,6 +52,9 @@ class RedisStreamQueue {
      * @returns The current queue instance.
      */
     public getQueue(): Queue {
+        if (!this.queue) {
+            throw new Error("Queue is not initialized");
+        }
         return this.queue;
     }   
 

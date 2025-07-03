@@ -55,13 +55,13 @@ class BullBoard {
     public startServer(port: number): void {
       this._setupBullBoard();
       this.app.listen(port, () => {
-        console.log(`Bull Board is running on http://localhost:${port}/admin/queues`);
+        console.log(`App running on port ${port}`);
       });
     }
   }
   
   // Instantiate and start the server
   dotenv.config();
-  const port = Number(process.env.BULL_BOARD_PORT) || 3000;
+const port = Number(process.env.PORT) || 3000; // Default port if not specified in .env
   const bullBoard = new BullBoard();
   bullBoard.startServer(port);

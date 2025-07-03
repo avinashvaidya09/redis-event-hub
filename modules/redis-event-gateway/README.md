@@ -36,9 +36,10 @@ This service is ideal for scenarios where asynchronous processing of tasks is re
 4. Test the API using the provided [requests.http](requests.http) file or any HTTP client like Postman.
 
 ### Deployment to BTP
+
 1. Ensure Redis service is entitled to your subaccount
 
-2. Go to the root of the folder and build
+2. Go to the root **(redis-event-hub)** of the folder and build 
 ```
 mbt build
 ```

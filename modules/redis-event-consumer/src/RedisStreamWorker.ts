@@ -38,10 +38,7 @@ class RedisStreamWorker {
             }
         });
 
-        console.info(`${consumerName} initialized for queue: ${queueName}`, {
-            host: process.env.REDIS_HOST || "localhost",
-            port: Number(process.env.REDIS_PORT) || 6379,
-        });
+        console.info(`${consumerName} initialized for queue: ${queueName} on Redis at ${connectionConfig.host}:${connectionConfig.port}`);
        
     }
 
