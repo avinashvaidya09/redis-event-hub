@@ -16,7 +16,7 @@ for (let i = 1; i <= workerCount; i++) {
 }
 
 const app = express();
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 8081;
 
 app.get("/health", (req, res) => {
     res.status(200).send("OK");

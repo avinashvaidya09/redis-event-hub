@@ -15,6 +15,17 @@ Content-Type: application/json
   "uploadDate": "2025-07-03T10:00:00Z"
 }
 
+### POST: Set Feature Flag
+POST http://localhost:8080/feature-flag/IS_EDA_ENABLED
+Content-Type: application/json  
+
+{
+  "value": true
+}
+
+### GET: Get Feature Flag
+GET http://localhost:8080/feature-flag/IS_EDA_ENABLED
+Accept: application/json  
 
 ###
 POST https://gaif-evaluation-dev-agent-eval-redis-event-gateway.cfapps.eu12.hana.ondemand.com/video
