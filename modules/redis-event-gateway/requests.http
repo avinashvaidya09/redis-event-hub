@@ -1,3 +1,4 @@
+### Localhost Requests ###
 ### POST request to /video
 POST http://localhost:8080/video
 Content-Type: application/json
@@ -27,6 +28,7 @@ Content-Type: application/json
 GET http://localhost:8080/feature-flag/IS_EDA_ENABLED
 Accept: application/json  
 
+### BTP Requests ###
 ###
 POST https://gaif-evaluation-dev-agent-eval-redis-event-gateway.cfapps.eu12.hana.ondemand.com/video
 Content-Type: application/json
@@ -43,3 +45,15 @@ Content-Type: application/json
   "uploadedBy": "user123",
   "uploadDate": "2025-07-03T10:00:00Z"
 }
+
+### POST: Set Feature Flag
+POST https://gaif-evaluation-dev-agent-eval-redis-event-gateway.cfapps.eu12.hana.ondemand.com/feature-flag/IS_EDA_ENABLED
+Content-Type: application/json  
+
+{
+  "value": true
+}
+
+### GET: Get Feature Flag
+GET https://gaif-evaluation-dev-agent-eval-redis-event-gateway.cfapps.eu12.hana.ondemand.com/feature-flag/IS_EDA_ENABLED
+Accept: application/json  

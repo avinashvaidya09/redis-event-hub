@@ -37,7 +37,7 @@ This service is ideal for scenarios where asynchronous processing of tasks is re
 
 ### Deployment to BTP
 
-1. Ensure Redis service is entitled to your subaccount
+1. Ensure Redis service - "Redis, Hyperscaler Option" is entitled to your subaccount
 
 2. Go to the root **(redis-event-hub)** of the folder and build 
 ```
@@ -46,5 +46,5 @@ mbt build
 
 3. Deploy to cloud foundry environment
 ```
-cf deploy mta_archives/redis-event-hub_001.mtar
+cf deploy mta_archives/redis-event-hub_0.0.1.mtar
 ```
