@@ -1,6 +1,6 @@
 ### Introduction
 
-The **Redis Event Gateway** is a Node.js-based microservice designed to handle event-driven workflows using Redis as a message broker. This service provides an HTTP API to enqueue events, such as video processing jobs, into a Redis-backed queue for asynchronous processing. It is built with TypeScript and Express.
+The **Redis Event Gateway** is a Node.js-based microservice designed to handle event-driven workflows using Redis as a message broker. This service provides an HTTP API to enqueue events, such as video processing jobs, into a Redis-backed queue for asynchronous processing.
 
 ### Key Features
 - **Event Queue Management**: Handles event queuing for tasks like video transcoding.
@@ -16,7 +16,7 @@ This service is ideal for scenarios where asynchronous processing of tasks is re
 
 ### Prerequisites
 - Node.js and npm installed
-- Redis instance (local or managed, 
+- Redis instance (local or managed)
     - SAP Redis Hyperscaler on BTP
     - docker image on local
 - `.env` file with necessary environment variables (e.g., `PORT`, `REDIS_URL`)
