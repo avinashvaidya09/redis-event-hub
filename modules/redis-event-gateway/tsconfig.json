@@ -22,7 +22,7 @@
     "include": [
       "src/*.ts",
       "src/*.json",
-      "../../config/**/*"
+      "../../redis-config/**/*"
     ],
     "exclude": ["node_modules"]
   }
