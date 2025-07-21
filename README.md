@@ -1,12 +1,13 @@
 ### Introduction
 
 This is main README.md of the project
-For set up go to each modules README.md file in sequence
+For set up, go to each module's README.md file in sequence
+
 1. [redis-event-gateway](/modules/redis-event-gateway/README.md)
 2. [redis-bullboard-monitor](/modules/redis-bullboard-monitor/README.md)
 3. [redis-event-consumer](/modules/redis-event-consumer/README.md)
 
-Once you are comfortable setting up on local and understand the flow, you can deploy this project 
+Once you are comfortable setting up on local and understand the flow, you can deploy this project on
 any cloud provider. I have user SAP Business Technology platform.
 
 ### Deployment to BTP
