@@ -39,7 +39,7 @@ class RedisStreamQueue {
                 throw new Error("Queue is not initialized");
             }
             await this.queue.add(jobName, data, options);
-            console.info(`Message added to ${this.queue.name} queue, ${JSON.stringify(data, null, 2)}`);
+            console.info(`Message added to ${this.queue.name}, PAYLOAD: ${JSON.stringify(data, null, 2)}`);
         } catch (error) {
             console.error(`Error adding message to ${this.queue?.name || 'unknown'} queue, ${JSON.stringify(error)}`);
             throw error;

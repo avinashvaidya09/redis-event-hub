@@ -1,6 +1,6 @@
 ### Localhost Requests ###
 ### POST request to /video
-POST http://localhost:8080/video
+POST http://localhost:8080/transcode/video
 Content-Type: application/json
 
 {

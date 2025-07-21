@@ -12,39 +12,63 @@ The **Redis Event Gateway** is a Node.js-based microservice designed to handle e
 ### Use Case
 This service is ideal for scenarios where asynchronous processing of tasks is required, such as:
 - Video transcoding
+- Asynchronous feed generation
 - Data processing pipelines
 
-### Prerequisites
+### Prerequisites for local set up
 - Node.js and npm installed
-- Redis instance (local or managed)
-    - SAP Redis Hyperscaler on BTP
-    - docker image on local
+- Redis instance (local): docker image on local. I am using docker desktop. 
+```
+docker run --name local-redis -p 6379:6379 -d redis
+```
+- Start redis container
 - `.env` file with necessary environment variables (e.g., `PORT`, `REDIS_URL`)
 
 ### Getting Started on local
-1. Install dependencies:
+1. Open terminal and go to the `redis-event-gateway` directory
+
+2. Install dependencies:
    ```
    npm install
    ```
-2. Run `npx tsc --watch` in one terminal to convert .ts files to .js
+3. Run `npx tsc --watch` in the terminal to convert .ts files to .js
 
-3. Open another terminal and Start server
+4. Open another terminal and go to the `redis-event-gateway` directory and start server
     ```
     npm start
     ```
 
-4. Test the API using the provided [requests.http](requests.http) file or any HTTP client like Postman.
+5. Test the API using the provided [requests.http](requests.http) file or any HTTP client like Postman.
 
-### Deployment to BTP
+6. Execute the requests. You should see below error message
+    ```JSON
+    {
+        "error": "EDA is not enabled. Please enable the feature flag to use this endpoint."
+    }
+    ```
+   You have to toggle this flag to `true` using the request provided in [requests.http](requests.http)
+   and then execute `http://localhost:8080/transcode/video`
 
-1. Ensure Redis service - "Redis, Hyperscaler Option" is entitled to your subaccount
+7. You should see the below log in the console
+    ```JSON
+    Message added to video-transcoding-queue, PAYLOAD: {
+        "videoId": "12345-11",
+        "title": "Sample Video",
+        "description": "This is a sample video for testing purposes.",
+        "s3Location": "s3://my-bucket/videos/12345.mp4",
+        "transcodingTypes": [
+          "1080p",
+          "720p",
+          "480p"
+        ],
+        "format": "mp4",
+        "resolution": "1080p",
+        "duration": 120,
+        "uploadedBy": "user123",
+        "uploadDate": "2025-07-03T10:00:00Z"
+    }
+    ```
 
-2. Go to the root **(redis-event-hub)** of the folder and build 
-```
-mbt build
-```
+8. Now go to the [README.md](../redis-bullboard-monitor/README.md) file of `redis-bullboard-monitor` project.
 
-3. Deploy to cloud foundry environment
-```
-cf deploy mta_archives/redis-event-hub_0.0.1.mtar
-```
+

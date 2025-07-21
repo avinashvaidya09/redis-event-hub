@@ -19,7 +19,7 @@ const eventQueueService = EventQueueService.getInstance();
 // Initiate RedisStreamWorker instance to start processing jobs
 
 // POST endpoint to handle videoId
-app.post("/video", async (req: any, res: any) => {
+app.post("/transcode/video", async (req: any, res: any) => {
 
   const input = req.body;
 
