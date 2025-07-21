@@ -10,6 +10,12 @@ For set up, go to each module's README.md file in sequence
 Once you are comfortable setting up on local and understand the flow, you can deploy this project on
 any cloud provider. I have user SAP Business Technology platform.
 
+### Architecture Diagram
+
+The diagram shows the interaction between all the 3 modules.
+
+![Architecture Diagram](/modules/assets/architecture-diagram.png)
+
 ### Deployment to BTP
 
 1. Ensure you are logged in to the subaccount through terminal. Check `cf target`
