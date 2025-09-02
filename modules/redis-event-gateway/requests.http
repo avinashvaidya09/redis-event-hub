@@ -1,4 +1,17 @@
 ### Localhost Requests ###
+
+### POST: Set Feature Flag
+POST http://localhost:8080/feature-flag/IS_EDA_ENABLED
+Content-Type: application/json  
+
+{
+  "value": true
+}
+
+### GET: Get Feature Flag
+GET http://localhost:8080/feature-flag/IS_EDA_ENABLED
+Accept: application/json 
+
 ### POST request to /video
 POST http://localhost:8080/transcode/video
 Content-Type: application/json
@@ -16,8 +29,10 @@ Content-Type: application/json
   "uploadDate": "2025-07-03T10:00:00Z"
 }
 
+
+### BTP Requests ###
 ### POST: Set Feature Flag
-POST http://localhost:8080/feature-flag/IS_EDA_ENABLED
+POST https://<BTP Host Name>/feature-flag/IS_EDA_ENABLED
 Content-Type: application/json  
 
 {
@@ -25,12 +40,11 @@ Content-Type: application/json
 }
 
 ### GET: Get Feature Flag
-GET http://localhost:8080/feature-flag/IS_EDA_ENABLED
-Accept: application/json  
+GET https://<BTP Host Name>/feature-flag/IS_EDA_ENABLED
+Accept: application/json 
 
-### BTP Requests ###
 ###
-POST https://gaif-evaluation-dev-agent-eval-redis-event-gateway.cfapps.eu12.hana.ondemand.com/video
+POST https://<BTP Host Name>/video
 Content-Type: application/json
 
 {
@@ -46,14 +60,4 @@ Content-Type: application/json
   "uploadDate": "2025-07-03T10:00:00Z"
 }
 
-### POST: Set Feature Flag
-POST https://gaif-evaluation-dev-agent-eval-redis-event-gateway.cfapps.eu12.hana.ondemand.com/feature-flag/IS_EDA_ENABLED
-Content-Type: application/json  
-
-{
-  "value": true
-}
-
-### GET: Get Feature Flag
-GET https://gaif-evaluation-dev-agent-eval-redis-event-gateway.cfapps.eu12.hana.ondemand.com/feature-flag/IS_EDA_ENABLED
-Accept: application/json  
+ 
