@@ -15,9 +15,12 @@ This service is ideal for scenarios where asynchronous processing of tasks is re
 - Asynchronous feed generation
 - Data processing pipelines
 
-### Prerequisites for local set up
+### Docker Desktop Setup
+- Follow the below steps to install Docker on your machine - https://docs.docker.com/desktop/setup/install/mac-install/
+
+### Prerequisites for local setup
 - Node.js and npm installed
-- Redis instance (local): docker image on local. I am using docker desktop. 
+- Pull and run redis image in docker using the below command. 
 ```
 docker run --name local-redis -p 6379:6379 -d redis
 ```
@@ -38,9 +41,13 @@ docker run --name local-redis -p 6379:6379 -d redis
     npm start
     ```
 
-5. Test the API using the provided [requests.http](requests.http) file or any HTTP client like Postman.
+5. Follow the README.md of the below projects before moving ahead
+    - [redis-event-consumer](../redis-event-consumer/README.md)
+    - [redis-bullboard-monitor](../redis-bullboard-monitor/README.md)
 
-6. Execute the requests. You should see below error message
+6. Test the API using the provided [requests.http](requests.http) file or any HTTP client like Postman.
+
+7. Execute the requests sequentially. If you see below error message
     ```JSON
     {
         "error": "EDA is not enabled. Please enable the feature flag to use this endpoint."
@@ -48,8 +55,7 @@ docker run --name local-redis -p 6379:6379 -d redis
     ```
    You have to toggle this flag to `true` using the request provided in [requests.http](requests.http)
    and then execute `http://localhost:8080/transcode/video`
-
-7. You should see the below log in the console
+8. You should see the below log in the console logs
     ```JSON
     Message added to video-transcoding-queue, PAYLOAD: {
         "videoId": "12345-11",
@@ -69,6 +75,60 @@ docker run --name local-redis -p 6379:6379 -d redis
     }
     ```
 
-8. Now go to the [README.md](../redis-bullboard-monitor/README.md) file of `redis-bullboard-monitor` project.
+### Podman Setup
+1. Install Podman
 
+```
+brew install --cask podman-desktop
+```
 
+2. Post successful installation, you will see the Podman application
+
+![Podman](../assets/podman-docker.png)
+
+3. Once step 2 is done, The podman desktop will ask to complete 
+    a. Podman Setup (mandatory)
+    b. Kubectl Setup (optional)
+    c. Componse Setup (optional)
+
+    I am skipping the Kubectl Set up for now as I do not intend to use it right away.
+
+4. YOu will see a nice GUI as shown below
+
+![Podman_Desktop](../assets/podman-desktop.png)
+
+5. Set up the podman machine as per your preferred settings. I have done some basic settings as shown in the below screenshot.
+
+![Podman_Machine](../assets/podman-machine-config.png)
+
+5. Some common podman cli commands
+
+```
+podman machine list
+```
+
+```
+podman machine inspect
+```
+
+```
+podman machine stop
+```
+
+```
+podman machine start
+```
+
+6. Run the below command to pull the redis  image in podman desktop and start the container
+```
+podman run --name local-redis -p 6379:6379 -d redis
+```
+
+7. You will see the container as shown in the below screenshot
+
+![Redis_Container_Image](../assets/redis-container-image.png)
+
+8. Start all your local servers by following the section `Getting Started on local`
+
+9. Execute the requests in the requests.http. 
+    The application should work as it was working with Docker without any change in the application configuration or code
