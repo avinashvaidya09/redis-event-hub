@@ -18,6 +18,9 @@ This service is ideal for scenarios where asynchronous processing of tasks is re
 ### Docker Desktop Setup
 - Follow the below steps to install Docker on your machine - https://docs.docker.com/desktop/setup/install/mac-install/
 
+### Podman Desktop Setup
+- If you are using Podman instead of Docker, follow the section `Podman Setup` in  the README.md file.
+
 ### Prerequisites for local setup
 - Node.js and npm installed
 - Pull and run redis image in docker using the below command. 
@@ -28,6 +31,22 @@ docker run --name local-redis -p 6379:6379 -d redis
 - `.env` file with necessary environment variables (e.g., `PORT`, `REDIS_URL`)
 
 ### Getting Started on local
+
+0. Validate if the docker image is running properly
+
+    - Open docker terminal and run
+    ```
+    docker exec -it local-redis redis-cli
+    ```
+    - Try basic command
+    ```
+    PING
+    ```
+    - You should get a response
+    ```
+    PONG
+    ```
+
 1. Open terminal and go to the `redis-event-gateway` directory
 
 2. Install dependencies:
@@ -87,9 +106,9 @@ brew install --cask podman-desktop
 ![Podman](../assets/podman-docker.png)
 
 3. Once step 2 is done, The podman desktop will ask to complete 
-    a. Podman Setup (mandatory)
-    b. Kubectl Setup (optional)
-    c. Componse Setup (optional)
+    - Podman Setup (mandatory)
+    - Kubectl Setup (optional)
+    - Componse Setup (optional)
 
     I am skipping the Kubectl Set up for now as I do not intend to use it right away.
 
@@ -112,6 +131,14 @@ podman machine inspect
 ```
 
 ```
+podman version
+```
+
+```
+podman info
+```
+
+```
 podman machine stop
 ```
 
@@ -124,11 +151,26 @@ podman machine start
 podman run --name local-redis -p 6379:6379 -d redis
 ```
 
-7. You will see the container as shown in the below screenshot
+7. Validate if the podman image is running properly
+
+    - Open terminal and run
+    ```
+    podman exec -it local-redis redis-cli
+    ```
+    - Try basic command
+    ```
+    PING
+    ```
+    - You should get a response
+    ```
+    PONG
+    ```
+
+8. You will see the container as shown in the below screenshot
 
 ![Redis_Container_Image](../assets/redis-container-image.png)
 
-8. Start all your local servers by following the section `Getting Started on local`
+9. Start all your local servers by following the section `Getting Started on local`
 
-9. Execute the requests in the requests.http. 
+10. Execute the requests in the requests.http. 
     The application should work as it was working with Docker without any change in the application configuration or code
